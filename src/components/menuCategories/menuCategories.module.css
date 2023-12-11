@@ -1,0 +1,32 @@
+.categoryList{
+    margin-top: 35px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.categoryItem{
+    padding: 10px 25px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+.categoryItem.anxiety{
+    background-color: #57c4ff31;
+}
+.categoryItem.depression{
+    background-color: #57c4ff31;
+}
+.categoryItem.selfcare{
+    background-color: #57c4ff31;
+}
+.categoryItem.mentality{
+    background-color: #57c4ff31;
+}
+.categoryItem.trauma{
+    background-color: #57c4ff31;
+}
+.categoryItem.bullying{
+    background-color: #57c4ff31;
+}
