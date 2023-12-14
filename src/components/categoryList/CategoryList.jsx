@@ -4,37 +4,36 @@ import Link from 'next/link'
 import Image from 'next/image'
 Image
 
-const CategoryList = () => {
+const getData = async ()=> {
+  const res = await fetch("http://localhost:3000/api/categories",{
+    cache: "no-store",
+  });
+
+  if(!res.ok){
+    throw new Error("Failed")
+  }
+
+  return res.json()
+};
+
+const CategoryList = async () => {
+
+  const data = await getData();
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Popular Categories</h1>
       <div className={styles.categories}>
         {/* Container category */}
-        <Link href="/blog?cat=anxiety" className={`${styles.category} ${styles.anxiety}`}>
-          <Image src="/style.png" alt='' width={32} height={32} className={styles.image} />
-          Anxiety
+        {data?.map((item)=>(
+
+         <Link href="/blog?cat=anxiety" className={`${styles.category} ${styles[item.slug]}`}
+         key={item._id}
+         >
+          {item.img && (
+          <Image src={item.img} alt='' width={32} height={32} className={styles.image} />)}
+          {item.title}
         </Link>
-        {/* Travel */}
-        <Link href="/blog?cat=depression" className={`${styles.category} ${styles.depression}`}>
-          <Image src="/travel.png" alt='' width={32} height={32} className={styles.image} />
-          Depresion
-        </Link>
-        <Link href="/blog?cat=selfcare" className={`${styles.category} ${styles.selfcare}`}>
-          <Image src="/culture.png" alt='' width={32} height={32} className={styles.image} />
-          Self-Care
-        </Link>
-        <Link href="/blog?cat=mentality" className={`${styles.category} ${styles.mentality}`}>
-          <Image src="/style.png" alt='' width={32} height={32} className={styles.image} />
-          Mentality
-        </Link>
-        <Link href="/blog?cat=trauma" className={`${styles.category} ${styles.trauma}`}>
-          <Image src="/food.png" alt='' width={32} height={32} className={styles.image} />
-          Trauma & Healing
-        </Link>
-        <Link href="/blog?cat=bullying" className={`${styles.category} ${styles.bullying}`}>
-          <Image src="/fashion.png" alt='' width={32} height={32} className={styles.image} />
-          bullying
-        </Link>
+        ))}
       </div>
     </div>
   )
