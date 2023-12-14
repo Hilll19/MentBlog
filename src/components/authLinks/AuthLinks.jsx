@@ -8,7 +8,8 @@ const AuthLinks = () => {
 
   const [open, setOpen] = useState(false);
   //temporary check status
-  const {status} = useSession();
+  // const { status } = useSession();
+  const { status } = useSession();
 
   return (
     <>
@@ -35,7 +36,7 @@ const AuthLinks = () => {
           ) : (
             <>
               <Link href="/write">Write</Link>
-              <span className={styles.link}>Logout</span>
+              <span className={styles.link} onClick={signOut}>Logout</span>
             </>
           )}
         </div>
